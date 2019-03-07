@@ -8,7 +8,7 @@
 3. Go to root dir and run: pip install -r requirements.txt
 4. ./manage.py migrate
 5. ./manage.py runserver
-5. localhost:8000
+6. localhost:8000
 ```
 Live: https://apistore1.herokuapp.com
 
