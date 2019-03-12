@@ -16,3 +16,23 @@ class Blog(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Country(models.Model):
+    name = models.CharField(max_length=500)
+
+    def __str__(self):
+        return self.name
+
+
+class ContactUs(models.Model):
+    full_name = models.CharField(max_length=500)
+    email = models.EmailField()
+    civil_no = models.PositiveIntegerField()
+    state = models.CharField(max_length=500)
+    country = models.ForeignKey(Country, on_delete=models.CASCADE)
+    details = models.TextField()
+
+    def __str__(self):
+        return self.full_name
+

@@ -7,7 +7,9 @@ from rest_framework.authentication import SessionAuthentication, BasicAuthentica
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from django.views.generic import FormView
 
+from .forms import ContactForm
 
 class AuthorViewSet(viewsets.ModelViewSet):
 
@@ -44,5 +46,25 @@ class LoginView(APIView):
         }
         return Response(content)
 
+
+class ContactUs(FormView):
+    template_name = 'contact.html'
+    form_class = ContactForm
+    success_url = '/contact'
+
+    def form_invalid(self, form):
+        return HttpResponse(form.errors.as_json(), content_type='application/json', status=400)
+
+    def form_valid(self, form):
+        form.save()
+        return super(ContactUs, self).form_valid(form)
+
+
 def home(request):
     return render(request, 'index.html')
+
+
+
+def home(request):
+    return render(request, 'index.html')
+
